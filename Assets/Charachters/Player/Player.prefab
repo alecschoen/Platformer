@@ -180,7 +180,7 @@ MonoBehaviour:
   jumpableGround:
     serializedVersion: 2
     m_Bits: 64
-  jumpSound: {fileID: 0}
+  jumpSound: {fileID: 3954277587146988343}
 --- !u!95 &3590380307718693431
 Animator:
   serializedVersion: 5
@@ -213,7 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be60477a509afd4591ac76a04e6188d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectibleSound: {fileID: 0}
+  collectibleSound: {fileID: 8663296713453072798}
   cherriesText: {fileID: 0}
 --- !u!114 &5084373235532942287
 MonoBehaviour:
@@ -227,7 +227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11aa5b01c539a6a439300420e1b5d3e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathSound: {fileID: 3954277587146988343}
+  deathSound: {fileID: 4151728287003277595}
 --- !u!82 &3954277587146988343
 AudioSource:
   m_ObjectHideFlags: 0
