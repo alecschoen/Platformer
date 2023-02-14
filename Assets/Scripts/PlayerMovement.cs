@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     private bool canMove = true;
+    private int horizontalMovementSpeed = 0;
+
 
     [SerializeField] private LayerMask jumpableGround;
     [SerializeField] private AudioSource jumpSound;
@@ -46,23 +48,12 @@ public class PlayerMovement : MonoBehaviour
     {
         if (canMove)
         {
-            rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * 7f, rb.velocity.y);
+            //Debug.Log("inupt horizontal; " + Input.GetAxisRaw("Horizontal"));
+            //rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * 7f, rb.velocity.y);
+            rb.velocity = new Vector2(horizontalMovementSpeed * 7f, rb.velocity.y);
             if (Input.GetButtonDown("Jump"))
             {
-                if (isGrounded())
-                {
-                    rb.velocity = new Vector2(rb.velocity.x, 14);
-                    jumpSound.Play();
-                    //Debug.Log("space");
-                }
-                else if (canDoubleJump)
-                {
-                    rb.velocity = new Vector2(rb.velocity.x, 14);
-                    canDoubleJump = false;
-                    animator.SetBool("isDoubleJumping", true);
-                    jumpSound.Play();
-                    dust.Play();
-                }
+                Jump();
             }
             if (isGrounded())
             {
@@ -83,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
             spriteRenderer.flipX = false;
         }
 
-        if (Input.GetAxisRaw("Horizontal") != 0)
+        if (horizontalMovementSpeed !=0)
         {
             animator.SetBool("isMoving", true);
         }
@@ -125,6 +116,39 @@ public class PlayerMovement : MonoBehaviour
     {
         canMove = false;
         rb.bodyType = RigidbodyType2D.Static;
+    }
+
+    public void Jump()
+    {
+        if (isGrounded())
+        {
+            rb.velocity = new Vector2(rb.velocity.x, 14);
+            jumpSound.Play();
+            //Debug.Log("space");
+        }
+        else if (canDoubleJump)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, 14);
+            canDoubleJump = false;
+            animator.SetBool("isDoubleJumping", true);
+            jumpSound.Play();
+            dust.Play();
+        }
+    }
+
+    public void PressMoveLeft()
+    {
+        horizontalMovementSpeed = -1;
+    }
+
+    public void PressMoveRight()
+    {
+        horizontalMovementSpeed = 1;
+    }
+
+    public void DePressMove()
+    {
+        horizontalMovementSpeed= 0;
     }
 
 }
