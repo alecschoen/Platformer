@@ -53,7 +53,6 @@ public class PlayerMovement : MonoBehaviour
                 {
                     rb.velocity = new Vector2(rb.velocity.x, 14);
                     jumpSound.Play();
-                    dust.Play();
                     //Debug.Log("space");
                 }
                 else if (canDoubleJump)
