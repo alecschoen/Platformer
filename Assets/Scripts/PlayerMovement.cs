@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private LayerMask jumpableGround;
     [SerializeField] private AudioSource jumpSound;
+    [SerializeField] private ParticleSystem dust;
 
     private bool canDoubleJump = true;
 
@@ -52,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     rb.velocity = new Vector2(rb.velocity.x, 14);
                     jumpSound.Play();
+                    dust.Play();
                     //Debug.Log("space");
                 }
                 else if (canDoubleJump)
@@ -60,6 +62,7 @@ public class PlayerMovement : MonoBehaviour
                     canDoubleJump = false;
                     animator.SetBool("isDoubleJumping", true);
                     jumpSound.Play();
+                    dust.Play();
                 }
             }
             if (isGrounded())
