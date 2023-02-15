@@ -814,6 +814,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1497012043}
   m_SourcePrefab: {fileID: 100100000, guid: c448cc32439cebf48985d55ed543424a, type: 3}
+--- !u!82 &387625713 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3954277587146988343, guid: c448cc32439cebf48985d55ed543424a, type: 3}
+  m_PrefabInstance: {fileID: 387625712}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &395048885
 GameObject:
   m_ObjectHideFlags: 0
@@ -41966,6 +41971,7 @@ MonoBehaviour:
   dust: {fileID: 65311570}
   deathSound: {fileID: 1497012031}
   saw: {fileID: 1294755125}
+  jumpSound: {fileID: 387625713}
 --- !u!1 &1505318044
 GameObject:
   m_ObjectHideFlags: 0

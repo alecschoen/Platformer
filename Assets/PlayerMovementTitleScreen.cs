@@ -8,6 +8,7 @@ public class PlayerMovementTitleScreen : MonoBehaviour
     [SerializeField] private ParticleSystem dust;
     [SerializeField] private AudioSource deathSound;
     [SerializeField] private GameObject saw;
+    [SerializeField] private AudioSource jumpSound;
 
     private Rigidbody2D rb;
     private bool isRunning = false;
@@ -95,11 +96,13 @@ public class PlayerMovementTitleScreen : MonoBehaviour
 
     private void Jump()
     {
+        jumpSound.Play();
         rb.velocity = new Vector2(rb.velocity.x, 14);
     }
 
     private void DoubleJump()
     {
+        jumpSound.Play();
         rb.velocity = new Vector2(rb.velocity.x, 14);
         animator.SetBool("isDoubleJumping", true);
         dust.Play();
