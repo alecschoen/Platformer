@@ -1681,6 +1681,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3503082789746733860, guid: 77a7779e94091e64e8371d901d337139, type: 3}
   m_PrefabInstance: {fileID: 413831911}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1047108144 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9020493883516814518, guid: 4cfdcc316c7d6fd4eb1610aab7c82b0f, type: 3}
+  m_PrefabInstance: {fileID: 486679656}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1060669007 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8095326594060327068, guid: c6bca1f1539eb794f82a76c6c57e600b, type: 3}
@@ -3137,7 +3148,7 @@ PrefabInstance:
     - target: {fileID: 3590380307718693416, guid: c448cc32439cebf48985d55ed543424a, type: 3}
       propertyPath: cherriesText
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1047108144}
     - target: {fileID: 3590380307718693416, guid: c448cc32439cebf48985d55ed543424a, type: 3}
       propertyPath: collectibleSound
       value: 
