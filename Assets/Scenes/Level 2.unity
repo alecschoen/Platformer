@@ -852,6 +852,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1814112656852374362, guid: 4cfdcc316c7d6fd4eb1610aab7c82b0f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3590380308688779386}
+    - target: {fileID: 1814112656852374362, guid: 4cfdcc316c7d6fd4eb1610aab7c82b0f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SwitchMute
+      objectReference: {fileID: 0}
+    - target: {fileID: 1814112656852374362, guid: 4cfdcc316c7d6fd4eb1610aab7c82b0f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Sound, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 9020493881758432525, guid: 4cfdcc316c7d6fd4eb1610aab7c82b0f, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -3214,6 +3226,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c448cc32439cebf48985d55ed543424a, type: 3}
+--- !u!114 &3590380308688779386 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 236981945946987158, guid: c448cc32439cebf48985d55ed543424a, type: 3}
+  m_PrefabInstance: {fileID: 3590380308688779384}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3391911e64a891b45ab15f8763c11156, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4017837246963787625
 PrefabInstance:
   m_ObjectHideFlags: 0

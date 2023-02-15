@@ -13,7 +13,9 @@ public class ItemCollector : MonoBehaviour
 
     private void Start()
     {
+        cherriesCollected = PlayerPrefs.GetInt("cherriesCollected", 0);
         animator = GetComponent<Animator>();
+        cherriesText.text = "Cherries: " + cherriesCollected;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -26,5 +28,10 @@ public class ItemCollector : MonoBehaviour
             collectibleSound.Play();
             //Debug.Log("Cherries Collected: " + cherriesCollected);
         }
+    }
+
+    public int GetCherryCount()
+    {
+        return cherriesCollected;
     }
 }

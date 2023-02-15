@@ -8,6 +8,12 @@ public class FinishLevel : MonoBehaviour
 
     [SerializeField] private string nextLevel;
     private bool isFinished = false;
+    ItemCollector collector;
+
+    private void Start()
+    {
+        collector = GetComponent<ItemCollector>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -15,6 +21,7 @@ public class FinishLevel : MonoBehaviour
         {
             Debug.Log("Finished");
             isFinished = true;
+            PlayerPrefs.SetInt("cherriesCollected", collector.GetCherryCount());
             collision.gameObject.GetComponent<Animator>().SetBool("isFinished", true);
             Invoke("NextLevel", 5);
         }

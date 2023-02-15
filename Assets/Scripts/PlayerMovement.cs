@@ -65,11 +65,11 @@ public class PlayerMovement : MonoBehaviour
     private void CharacterAnimation()
     {
         //Debug.Log(rb.velocity.y);
-        if (rb.velocity.x < 0)
+        if (rb.velocity.x < -0.1)
         {
             spriteRenderer.flipX = true;
         }
-        else if (rb.velocity.x > 0)
+        else if (rb.velocity.x > 0.1)
         {
             spriteRenderer.flipX = false;
         }
@@ -150,5 +150,6 @@ public class PlayerMovement : MonoBehaviour
     {
         horizontalMovementSpeed= 0;
     }
+
 
 }
