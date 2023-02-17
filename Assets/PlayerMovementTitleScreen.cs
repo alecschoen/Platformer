@@ -14,24 +14,14 @@ public class PlayerMovementTitleScreen : MonoBehaviour
     private bool isRunning = false;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
-    private bool hasRespawned = false;
+    private bool hasRespawned = true;
 
     private void Start()
     { 
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer= GetComponent<SpriteRenderer>();
-        Invoke("StartToRun", 4);
-        Invoke("Jump", 5);
-        Invoke("DoubleJump", 5.5f);
-        Invoke("Jump", 6.5f);
-        Invoke("DoubleJump", 7.5f);
-        Invoke("Jump", 9f);
-        Invoke("DoubleJump", 9.2f);
-        Invoke("Jump", 10f);
-        Invoke("Jump", 12f);
-        Invoke("DoubleJump", 12.2f);
-
+        
     }
 
     private void Update()
@@ -87,6 +77,8 @@ public class PlayerMovementTitleScreen : MonoBehaviour
     private void StartToRun()
     {
         isRunning= true;
+        animator.SetBool("IsAppearing", false);
+
     }
 
     private void Run()
@@ -149,7 +141,14 @@ public class PlayerMovementTitleScreen : MonoBehaviour
     {
         rb.bodyType = RigidbodyType2D.Dynamic;
         rb.position = new Vector2(-5, -1);
+        Invoke("IsAppearing", 1f);
         hasRespawned = true;
         isRunning = false;
+    }
+
+    private void IsAppearing()
+    {
+        spriteRenderer.enabled = true;
+        animator.SetBool("IsAppearing", true);
     }
 }

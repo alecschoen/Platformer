@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     private bool canMove = true;
     private int horizontalMovementSpeed = 0;
+    private bool hasFinished = false;
 
 
     [SerializeField] private LayerMask jumpableGround;
@@ -59,44 +60,53 @@ public class PlayerMovement : MonoBehaviour
             {
                 canDoubleJump = true;
             }
+
+            if (hasFinished && isGrounded())
+            {
+                animator.SetTrigger("IsFinished");
+                CanNotMove();
+            }
         }
     }
 
     private void CharacterAnimation()
     {
-        //Debug.Log(rb.velocity.y);
-        if (rb.velocity.x < -0.1)
+        if (canMove)
         {
-            spriteRenderer.flipX = true;
-        }
-        else if (rb.velocity.x > 0.1)
-        {
-            spriteRenderer.flipX = false;
-        }
+            //Debug.Log(rb.velocity.y);
+            if (rb.velocity.x < -0.1)
+            {
+                spriteRenderer.flipX = true;
+            }
+            else if (rb.velocity.x > 0.1)
+            {
+                spriteRenderer.flipX = false;
+            }
 
-        if (horizontalMovementSpeed !=0)
-        {
-            animator.SetBool("isMoving", true);
-        }
-        else
-        {
-            animator.SetBool("isMoving", false);
-        }
-        if (rb.velocity.y > 0.01)
-        {
-            animator.SetBool("isFalling", false);
-            animator.SetBool("isJumping", true);
-        }
-        else if (rb.velocity.y < -0.01)
-        {
-            animator.SetBool("isJumping", false);
-            animator.SetBool("isFalling", true);
-            animator.SetBool("isDoubleJumping", false);
-        }
-        else
-        {
-            animator.SetBool("isJumping", false);
-            animator.SetBool("isFalling", false);
+            if (horizontalMovementSpeed != 0)
+            {
+                animator.SetBool("isMoving", true);
+            }
+            else
+            {
+                animator.SetBool("isMoving", false);
+            }
+            if (rb.velocity.y > 0.01)
+            {
+                animator.SetBool("isFalling", false);
+                animator.SetBool("isJumping", true);
+            }
+            else if (rb.velocity.y < -0.01)
+            {
+                animator.SetBool("isJumping", false);
+                animator.SetBool("isFalling", true);
+                animator.SetBool("isDoubleJumping", false);
+            }
+            else
+            {
+                animator.SetBool("isJumping", false);
+                animator.SetBool("isFalling", false);
+            }
         }
     }
 
@@ -112,7 +122,7 @@ public class PlayerMovement : MonoBehaviour
         rb.bodyType = RigidbodyType2D.Dynamic;
     }
 
-    private void CanNotMove()
+    public void CanNotMove()
     {
         canMove = false;
         rb.bodyType = RigidbodyType2D.Static;
@@ -151,5 +161,9 @@ public class PlayerMovement : MonoBehaviour
         horizontalMovementSpeed= 0;
     }
 
+    public void HasFinished()
+    {
+        hasFinished= true;
+    }
 
 }
