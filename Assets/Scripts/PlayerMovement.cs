@@ -64,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
             if (hasFinished && isGrounded())
             {
                 animator.SetTrigger("IsFinished");
-                CanNotMove();
+                Invoke("CanNotMove", 0.1f);
             }
         }
     }
