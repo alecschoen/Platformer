@@ -1,5 +1,7 @@
+using Mono.Cecil.Cil;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -10,11 +12,15 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     private bool canMove = true;
-    private int horizontalMovementSpeed = 0;
+    private int horizontalMovement = 0;
     private bool hasFinished = false;
+    private float movementVelocity = 7f;
+    private float jumpVelocity = 14f;
+    private int groundType = 0; // 0 == normal terrain // 1 == ice // ...  
+    private bool isSlippery = false;
 
 
-    [SerializeField] private LayerMask jumpableGround;
+    [SerializeField] private LayerMask[] jumpableGrounds;
     [SerializeField] private AudioSource jumpSound;
     [SerializeField] private ParticleSystem dust;
 
@@ -49,22 +55,43 @@ public class PlayerMovement : MonoBehaviour
     {
         if (canMove)
         {
+            SetMovementVelocity();
             //Debug.Log("inupt horizontal; " + Input.GetAxisRaw("Horizontal"));
             //rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * 7f, rb.velocity.y);
-            rb.velocity = new Vector2(horizontalMovementSpeed * 7f, rb.velocity.y);
+            Debug.Log("Velocity.x: "+rb.velocity.x);
+            Debug.Log("Drag: "+ rb.drag);
+            if (!isSlippery)
+            {
+                rb.velocity = new Vector2((horizontalMovement * movementVelocity), rb.velocity.y);
+            }
+            else
+            {
+                float movement = rb.velocity.x + (horizontalMovement * movementVelocity);
+                if(movement < -11)
+                {
+                    movement = -11;
+                }
+                else if(movement > 11)
+                {
+                    movement = 11;
+                }
+
+                rb.velocity = new Vector2(movement, rb.velocity.y);
+            }
+
             if (Input.GetButtonDown("Jump"))
             {
                 Jump();
             }
-            if (isGrounded())
+            if (IsGrounded())
             {
                 canDoubleJump = true;
             }
 
-            if (hasFinished && isGrounded())
+            if (hasFinished && IsGrounded())
             {
                 animator.SetTrigger("IsFinished");
-                Invoke("CanNotMove", 0.1f);
+                Invoke("CanNotMove", 0.04f);
             }
         }
     }
@@ -83,7 +110,7 @@ public class PlayerMovement : MonoBehaviour
                 spriteRenderer.flipX = false;
             }
 
-            if (horizontalMovementSpeed != 0)
+            if (horizontalMovement != 0)
             {
                 animator.SetBool("isMoving", true);
             }
@@ -110,10 +137,51 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private bool isGrounded()
+    private bool IsGrounded()
     {
         //Debug.Log("isGrounded");
-        return Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0f , Vector2.down, .1f, jumpableGround);
+        //Debug.Log("Boxcollider -> x:" + boxCollider.bounds.size.x + "y:"+ boxCollider.size.y
+
+        for(int i = 0; i < jumpableGrounds.Length; i++)
+        {
+            //Debug.Log(i);
+            if (Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0f, Vector2.down, .1f, jumpableGrounds[i]))
+            {
+                groundType = i;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //set movement velocity according to terrain type
+
+    private void SetMovementVelocity()
+    {
+        if(IsGrounded())
+        {
+            switch (groundType)
+            {
+                case 0: //normal
+                    movementVelocity = 7f;
+                    jumpVelocity = 14f;
+                    isSlippery = false;
+                    rb.drag = 0f;
+                    break;
+                case 1: //ice
+                    movementVelocity = 0.04f;
+                    jumpVelocity = 7f;
+                    isSlippery = true;
+                    rb.drag = 0.01f;
+                    break;
+            }
+        }
+        else
+        {
+            rb.drag = 0f;
+            movementVelocity = 7f;
+            jumpVelocity = 14f;
+        }
     }
 
     private void CanMove()
@@ -130,15 +198,15 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump()
     {
-        if (isGrounded())
+        if (IsGrounded())
         {
-            rb.velocity = new Vector2(rb.velocity.x, 14);
+            rb.velocity = new Vector2(rb.velocity.x, jumpVelocity);
             jumpSound.Play();
             //Debug.Log("space");
         }
         else if (canDoubleJump)
         {
-            rb.velocity = new Vector2(rb.velocity.x, 14);
+            rb.velocity = new Vector2(rb.velocity.x, jumpVelocity);
             canDoubleJump = false;
             animator.SetBool("isDoubleJumping", true);
             jumpSound.Play();
@@ -148,22 +216,40 @@ public class PlayerMovement : MonoBehaviour
 
     public void PressMoveLeft()
     {
-        horizontalMovementSpeed = -1;
+        horizontalMovement = -1;
     }
 
     public void PressMoveRight()
     {
-        horizontalMovementSpeed = 1;
+        horizontalMovement = 1;
     }
 
     public void DePressMove()
     {
-        horizontalMovementSpeed= 0;
+        horizontalMovement = 0;
     }
 
     public void HasFinished()
     {
         hasFinished= true;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ice"))
+        {
+            Debug.Log("Enter Ice");
+            movementVelocity= 3.5f;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ice"))
+        {
+            Debug.Log("Exit Ice");
+            movementVelocity = 7f;
+        }
     }
 
 }

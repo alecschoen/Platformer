@@ -181,9 +181,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1217321876b0fbf458f27a6d616007ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpableGround:
-    serializedVersion: 2
+  jumpableGrounds:
+  - serializedVersion: 2
     m_Bits: 64
+  - serializedVersion: 2
+    m_Bits: 128
   jumpSound: {fileID: 3954277587146988343}
   dust: {fileID: 1162146164349735}
 --- !u!95 &3590380307718693431
