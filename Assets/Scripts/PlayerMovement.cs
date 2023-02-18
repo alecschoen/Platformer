@@ -65,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                float movement = rb.velocity.x + (horizontalMovement * movementVelocity);
+                float movement = rb.velocity.x + (horizontalMovement * movementVelocity)* Time.deltaTime;
                 if(movement < -11)
                 {
                     movement = -11;
@@ -165,19 +165,16 @@ public class PlayerMovement : MonoBehaviour
                     movementVelocity = 7f;
                     jumpVelocity = 14f;
                     isSlippery = false;
-                    rb.drag = 0f;
                     break;
                 case 1: //ice
-                    movementVelocity = 0.04f;
+                    movementVelocity = 20f;
                     jumpVelocity = 7f;
                     isSlippery = true;
-                    rb.drag = 0.01f;
                     break;
             }
         }
         else
         {
-            rb.drag = 0f;
             movementVelocity = 7f;
             jumpVelocity = 14f;
         }
