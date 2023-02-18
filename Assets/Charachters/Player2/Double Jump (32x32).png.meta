@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a60e6ac700f82784f81b22ee81ce7c87
+guid: bea5ad0bc870c8343a106adba89bc8f6
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -157,8 +157,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 26df8115457f7ad49a36c93279cb6ef1
-      internalID: 361557860
+      spriteID: 5e468c3abbdfa96459e2a8700f49fb84
+      internalID: -1983307541
       vertices: []
       indices: 
       edges: []
@@ -178,8 +178,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 29e1e987d7f33d346968435d768835f5
-      internalID: 1731448574
+      spriteID: 4dbc0b2572aec694bb3dbed836bdf8b1
+      internalID: -1227858193
       vertices: []
       indices: 
       edges: []
@@ -199,8 +199,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9a4e922ecc118064ea7c5656813246eb
-      internalID: 1579112887
+      spriteID: 8acbad382dba9a442a696f8827217adf
+      internalID: 1443898370
       vertices: []
       indices: 
       edges: []
@@ -220,8 +220,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0ebe88929e37f0b4c829296c001e0b7d
-      internalID: 1631309861
+      spriteID: 3e037b5ad4f6ff9498977b2aeff45cd4
+      internalID: 995291057
       vertices: []
       indices: 
       edges: []
@@ -241,8 +241,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 577f9dd6bbbb60a4796e803b8cc5096e
-      internalID: -1646490471
+      spriteID: 4c8de73cefbe81c4da5560e236bf4322
+      internalID: -1856989824
       vertices: []
       indices: 
       edges: []
@@ -262,8 +262,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cea2ab4d5dbddf244b16d235c8f48eee
-      internalID: -489102687
+      spriteID: f42f59b40da8d744ca27bb06a5598b20
+      internalID: -644102011
       vertices: []
       indices: 
       edges: []
@@ -279,12 +279,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Double Jump (32x32)_1: 1731448574
-      Double Jump (32x32)_5: -489102687
-      Double Jump (32x32)_0: 361557860
-      Double Jump (32x32)_3: 1631309861
-      Double Jump (32x32)_4: -1646490471
-      Double Jump (32x32)_2: 1579112887
+      Double Jump (32x32)_1: -1227858193
+      Double Jump (32x32)_5: -644102011
+      Double Jump (32x32)_0: -1983307541
+      Double Jump (32x32)_3: 995291057
+      Double Jump (32x32)_4: -1856989824
+      Double Jump (32x32)_2: 1443898370
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

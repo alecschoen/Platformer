@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 25d16f162e569c24b8ca1f802cf343ce
+guid: a29707857295c2a41be62aa699fcf3ba
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -157,8 +157,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c69c053be02390148900dbcbb507a6de
-      internalID: -561742479
+      spriteID: b9568c8d49f44f346aad189ed5fff151
+      internalID: -1779905656
       vertices: []
       indices: 
       edges: []
@@ -178,8 +178,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 17fea35ffc34c5a489f9a618da6be408
-      internalID: 1712923143
+      spriteID: c0420c2450b47124da15bc153cbb93ae
+      internalID: 1882626315
       vertices: []
       indices: 
       edges: []
@@ -199,8 +199,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b664c743d51d9684396b0c76363a7c85
-      internalID: -637704666
+      spriteID: 48808bd775fae7148ba280288be8d116
+      internalID: -1141000309
       vertices: []
       indices: 
       edges: []
@@ -220,8 +220,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 933379d28a229044c95b8cdca4933f9a
-      internalID: 319427899
+      spriteID: e1e7c2a481343a641adab3170174dec0
+      internalID: -563696405
       vertices: []
       indices: 
       edges: []
@@ -241,8 +241,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fd8455c1f71baa1488f809928a70721f
-      internalID: 1020118540
+      spriteID: 6bef11ab1c308e44f8d7765982db50e6
+      internalID: 1491907812
       vertices: []
       indices: 
       edges: []
@@ -258,11 +258,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Wall Jump (32x32)_0: -561742479
-      Wall Jump (32x32)_1: 1712923143
-      Wall Jump (32x32)_3: 319427899
-      Wall Jump (32x32)_2: -637704666
-      Wall Jump (32x32)_4: 1020118540
+      Wall Jump (32x32)_0: -1779905656
+      Wall Jump (32x32)_1: 1882626315
+      Wall Jump (32x32)_3: -563696405
+      Wall Jump (32x32)_2: -1141000309
+      Wall Jump (32x32)_4: 1491907812
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

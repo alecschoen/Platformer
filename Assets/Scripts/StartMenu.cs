@@ -18,7 +18,7 @@ public class StartMenu : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
     }
 
     public void Settings() 
@@ -36,6 +36,16 @@ public class StartMenu : MonoBehaviour
     {
         StartMenuUI.SetActive(true);
         settingsMenuUI.SetActive(false);
+    }
+
+    public void LevelSelect()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void ChooseLevel(int level)
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1 +level);
     }
 
 

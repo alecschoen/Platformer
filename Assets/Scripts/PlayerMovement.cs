@@ -14,14 +14,16 @@ public class PlayerMovement : MonoBehaviour
     private int horizontalMovement = 0;
     private bool hasFinished = false;
     private float movementVelocity = 7f;
-    private float jumpVelocity = 14f;
+    public float jumpVelocity = 14f;
     private int groundType = 0; // 0 == normal terrain // 1 == ice // ...  
     private bool isSlippery = false;
+    private bool hasMovementParticle = false;
 
 
     [SerializeField] private LayerMask[] jumpableGrounds;
     [SerializeField] private AudioSource jumpSound;
-    [SerializeField] private ParticleSystem dust;
+    [SerializeField] private ParticleSystem dustParticle;
+    [SerializeField] private ParticleSystem snowPaticle;
 
     private bool canDoubleJump = true;
 
@@ -47,8 +49,9 @@ public class PlayerMovement : MonoBehaviour
     {
 
         CharacterAnimation();
-       
+
     }
+
 
     private void CharachterMovent()
     {
@@ -76,6 +79,10 @@ public class PlayerMovement : MonoBehaviour
                 }
 
                 rb.velocity = new Vector2(movement, rb.velocity.y);
+                if(movement > 0.5f || movement < -0.5f) 
+                {
+                    ParticleEmission();
+                }
             }
 
             if (Input.GetButtonDown("Jump"))
@@ -95,23 +102,39 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void ParticleEmission()
+    {
+        if (hasMovementParticle)
+        {
+            switch(groundType)
+            {
+                case 1: // Snow Particle Play
+                    snowPaticle.Play();
+                    break;
+            }
+        }
+    }
+
     private void CharacterAnimation()
     {
         if (canMove)
         {
             //Debug.Log(rb.velocity.y);
-            if (rb.velocity.x < -0.1)
-            {
-                spriteRenderer.flipX = true;
-            }
-            else if (rb.velocity.x > 0.1)
-            {
-                spriteRenderer.flipX = false;
-            }
 
             if (horizontalMovement != 0)
             {
                 animator.SetBool("isMoving", true);
+
+                switch(horizontalMovement)
+                {
+                    case -1:
+                        spriteRenderer.flipX = true;
+                        break;
+                    case 1:
+                        spriteRenderer.flipX = false;
+                        break;
+
+                }
             }
             else
             {
@@ -165,18 +188,24 @@ public class PlayerMovement : MonoBehaviour
                     movementVelocity = 7f;
                     jumpVelocity = 14f;
                     isSlippery = false;
+                    hasMovementParticle = false;
+                    rb.gravityScale = 3;
                     break;
                 case 1: //ice
+                    rb.gravityScale = 1;
                     movementVelocity = 20f;
-                    jumpVelocity = 7f;
+                    jumpVelocity = 14f;
                     isSlippery = true;
+                    hasMovementParticle = true;
                     break;
             }
         }
         else
         {
+            rb.gravityScale = 3;
             movementVelocity = 7f;
             jumpVelocity = 14f;
+            hasMovementParticle = false;
         }
     }
 
@@ -206,7 +235,7 @@ public class PlayerMovement : MonoBehaviour
             canDoubleJump = false;
             animator.SetBool("isDoubleJumping", true);
             jumpSound.Play();
-            dust.Play();
+            dustParticle.Play();
         }
     }
 
