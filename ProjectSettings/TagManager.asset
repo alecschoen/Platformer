@@ -8,6 +8,7 @@ TagManager:
   - Trap
   - End
   - Ice
+  - Mud
   layers:
   - Default
   - TransparentFX
@@ -17,8 +18,8 @@ TagManager:
   - UI
   - Terrain
   - Ice
-  - 
-  - 
+  - Mud
+  - Slime
   - 
   - 
   - 

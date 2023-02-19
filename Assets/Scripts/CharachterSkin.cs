@@ -56,7 +56,7 @@ public class CharachterSkin : MonoBehaviour
     {
         playerSkin = skin;
         PlayerPrefs.SetInt("playerSkin", skin);
-        animator.SetTrigger("SkinChange");
+        animator.SetTrigger("FakeDeath");
         CharachterSelection();
     }
 }

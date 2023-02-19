@@ -15,6 +15,7 @@ public class PlayerMovementTitleScreen : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     private bool hasRespawned = true;
+    private float previousSawPosX;
 
     private void Start()
     { 
@@ -41,7 +42,8 @@ public class PlayerMovementTitleScreen : MonoBehaviour
 
     private void AnimationLoop()
     {
-        if (hasRespawned && saw.GetComponent<Transform>().position.x >= 3.23)
+        
+        if (hasRespawned && saw.GetComponent<Transform>().position.x >= 3.23f && previousSawPosX < 3.23f)
         {
             hasRespawned= false;
             StartToRun();
@@ -55,6 +57,8 @@ public class PlayerMovementTitleScreen : MonoBehaviour
             Invoke("Jump", 8f);
             Invoke("DoubleJump", 8.2f);
         }
+
+        previousSawPosX =  saw.GetComponent<Transform>().position.x;
 
     }
 
@@ -140,10 +144,17 @@ public class PlayerMovementTitleScreen : MonoBehaviour
     public void Respawn()
     {
         rb.bodyType = RigidbodyType2D.Dynamic;
+        rb.velocity = Vector2.zero;
         rb.position = new Vector2(-5, -1);
         Invoke("IsAppearing", 1f);
         hasRespawned = true;
         isRunning = false;
+    }
+
+    public void GetStopped()
+    {
+        CancelInvoke();
+        rb.bodyType = RigidbodyType2D.Static;
     }
 
     private void IsAppearing()
