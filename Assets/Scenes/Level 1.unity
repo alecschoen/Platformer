@@ -3055,6 +3055,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3503082789746733860, guid: 77a7779e94091e64e8371d901d337139, type: 3}
   m_PrefabInstance: {fileID: 913425233}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &1791109329 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2841756703155399201, guid: deb7f4a948099324084c23bd9141b9c5, type: 3}
+  m_PrefabInstance: {fileID: 5156453507725002469}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1792879651 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8095326594060327068, guid: c6bca1f1539eb794f82a76c6c57e600b, type: 3}
@@ -3843,6 +3848,10 @@ PrefabInstance:
       propertyPath: nextLevel
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8756248799927028488, guid: c448cc32439cebf48985d55ed543424a, type: 3}
+      propertyPath: confettiParticle
+      value: 
+      objectReference: {fileID: 1791109329}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

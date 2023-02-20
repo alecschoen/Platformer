@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
-        airMechanic = PlayerPrefs.GetInt("air",0);
+        airMechanic = PlayerPrefs.GetInt("air", 0);
         SetButtonAirMech();
     }
 
@@ -58,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
     {
 
         CharachterMovent();
-        
+
 
     }
 
@@ -103,7 +103,7 @@ public class PlayerMovement : MonoBehaviour
                     needsPassthrough = false;
                     passthroughVelocityX = passthroughVelocityX / 1.5f;
                     //Debug.Log(passthroughVelocityX);
-                    rb.velocity = new Vector2(passthroughVelocityX , rb.velocity.y);
+                    rb.velocity = new Vector2(passthroughVelocityX, rb.velocity.y);
                     //Debug.Log("VelocityX: " + rb.velocity.x);
                 }
                 else
@@ -134,6 +134,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+
     private void ParticleEmission()
     {
         if (hasMovementParticle)
@@ -157,7 +158,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!hasLanded && IsGrounded())
         {
-            hasLanded= true;
+            hasLanded = true;
             ParticleEmission();
         }
     }
@@ -172,7 +173,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 animator.SetBool("isMoving", true);
 
-                switch(horizontalMovement)
+                switch (horizontalMovement)
                 {
                     case -1:
                         spriteRenderer.flipX = true;
@@ -212,7 +213,7 @@ public class PlayerMovement : MonoBehaviour
         //Debug.Log("isGrounded");
         //Debug.Log("Boxcollider -> x:" + boxCollider.bounds.size.x + "y:"+ boxCollider.size.y
 
-        for(int i = 0; i < jumpableGrounds.Length; i++)
+        for (int i = 0; i < jumpableGrounds.Length; i++)
         {
             //Debug.Log(i);
             if (Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0f, Vector2.down, .1f, jumpableGrounds[i]))
@@ -231,7 +232,7 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("BounceJump: " + (Time.time - timeJumped));
             if ((Time.time - timeJumped) < 0.4f)
             {
-                rb.velocity = new Vector2(rb.velocity.x, (previousVelocityY * -bounceRetention)+jumpVelocity);
+                rb.velocity = new Vector2(rb.velocity.x, (previousVelocityY * -bounceRetention) + jumpVelocity);
                 timeJumped = 0;
             }
             else
@@ -246,7 +247,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void SetMovementVelocity()
     {
-        if(IsGrounded())
+        if (IsGrounded())
         {
             switch (groundType)
             {
@@ -263,17 +264,17 @@ public class PlayerMovement : MonoBehaviour
                     break;
                 case 1: //Ice
                     needsPassthrough = false;
-                    rb.gravityScale = 1;
+                    rb.gravityScale = 0.5f;
                     movementVelocity = 17f;
                     jumpVelocity = 14f;
                     isSlippery = true;
                     hasMovementParticle = true;
-                    maxHorizontalVelocity = 11f;
+                    maxHorizontalVelocity = 7f;
                     isBouncy = false;
                     break;
                 case 2: //Sand
                     needsPassthrough = false;
-                    rb.gravityScale = 3;
+                    rb.gravityScale = 4;
                     movementVelocity = 18f;
                     jumpVelocity = 10f;
                     isSlippery = true;
@@ -308,15 +309,17 @@ public class PlayerMovement : MonoBehaviour
     {
         switch (airMechanic)
         {
-            case 0://momentum air
-                isSlippery = true;
-                break;
-            case 1://no momentum air
+            case 0://no momentum air
                 isSlippery = false;
                 needsPassthrough = false;
+                maxHorizontalVelocity = 7f;
+                break;
+            case 1://momentum air
+                isSlippery = true;
+                maxHorizontalVelocity = 14f;
                 break;
             case 2://keep momentum from ground
-                needsPassthrough= false;
+                needsPassthrough = false;
                 break;
 
         }
@@ -333,9 +336,9 @@ public class PlayerMovement : MonoBehaviour
     public void SwitchAirMechanic()
     {
         airMechanic++;
-        if (airMechanic > 2) 
+        if (airMechanic > 2)
         {
-            airMechanic= 0;
+            airMechanic = 0;
         }
         PlayerPrefs.SetInt("air", airMechanic);
         SetButtonAirMech();
@@ -345,10 +348,10 @@ public class PlayerMovement : MonoBehaviour
         switch (airMechanic)
         {
             case 0:
-                textButtonAirmechanic.text = "Keep Momentum";
+                textButtonAirmechanic.text = "No Momentum";
                 break;
             case 1:
-                textButtonAirmechanic.text = "No Momentum";
+                textButtonAirmechanic.text = "Keep Momentum";
                 break;
             case 2:
                 textButtonAirmechanic.text = "Terrain Momentum";
@@ -406,7 +409,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void HasFinished()
     {
-        hasFinished= true;
+        hasFinished = true;
     }
 
 }

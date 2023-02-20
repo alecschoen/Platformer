@@ -15,7 +15,7 @@ public class FinishLevel : MonoBehaviour
     private void Start()
     {
         collector = GetComponent<ItemCollector>();
-        playerMovement= GetComponent<PlayerMovement>();
+        playerMovement = GetComponent<PlayerMovement>();
     }
 
 
@@ -35,6 +35,6 @@ public class FinishLevel : MonoBehaviour
 
     private void NextLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

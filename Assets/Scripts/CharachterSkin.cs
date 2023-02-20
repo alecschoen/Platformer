@@ -9,7 +9,7 @@ public class CharachterSkin : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        animator= GetComponent<Animator>();
+        animator = GetComponent<Animator>();
         playerSkin = PlayerPrefs.GetInt("playerSkin");
         CharachterSelection();
 

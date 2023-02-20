@@ -7,7 +7,7 @@ public class StartMenu : MonoBehaviour
 {
     [SerializeField] private GameObject StartMenuUI;
     [SerializeField] private GameObject settingsMenuUI;
-    
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -21,8 +21,8 @@ public class StartMenu : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
     }
 
-    public void Settings() 
-    { 
+    public void Settings()
+    {
         StartMenuUI.SetActive(false);
         settingsMenuUI.SetActive(true);
     }
@@ -45,7 +45,7 @@ public class StartMenu : MonoBehaviour
 
     public void ChooseLevel(int level)
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1 +level);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1 + level);
     }
 
 

@@ -8312,6 +8312,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: deb7f4a948099324084c23bd9141b9c5, type: 3}
+--- !u!198 &1821971409 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2841756703155399201, guid: deb7f4a948099324084c23bd9141b9c5, type: 3}
+  m_PrefabInstance: {fileID: 1821971408}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1832892466
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9358,6 +9363,10 @@ PrefabInstance:
       propertyPath: deathSound
       value: 
       objectReference: {fileID: 1589708981}
+    - target: {fileID: 8756248799927028488, guid: c448cc32439cebf48985d55ed543424a, type: 3}
+      propertyPath: confettiParticle
+      value: 
+      objectReference: {fileID: 1821971409}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

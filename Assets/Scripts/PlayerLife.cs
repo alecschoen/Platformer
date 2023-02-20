@@ -12,7 +12,7 @@ public class PlayerLife : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        animator= GetComponent<Animator>();
+        animator = GetComponent<Animator>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
