@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private int horizontalMovement = 0;
     private bool hasFinished = false;
     private float movementVelocity = 7f;
-    public float jumpVelocity = 14f;
+    private float jumpVelocity = 14f;
     private int groundType = 0; // 0 == normal terrain // 1 == ice // ...  
     private bool isSlippery = false;
     private bool hasMovementParticle = false;
@@ -25,7 +26,8 @@ public class PlayerMovement : MonoBehaviour
     private bool hasLanded = true;
     private float passthroughVelocityX = 0f;
     private bool needsPassthrough = false;
-    private float timeJumped = Time.time;
+    private float timeJumped = 0;
+    private int airMechanic = 0;
 
 
     [SerializeField] private LayerMask[] jumpableGrounds;
@@ -34,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private ParticleSystem snowPaticle;
     [SerializeField] private ParticleSystem sandPaticle;
     [SerializeField] private ParticleSystem slimePaticle;
+    [SerializeField] private Text textButtonAirmechanic;
 
     private bool canDoubleJump = true;
 
@@ -46,6 +49,8 @@ public class PlayerMovement : MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        airMechanic = PlayerPrefs.GetInt("air",0);
+        SetButtonAirMech();
     }
 
     // Update is called once per frame
@@ -292,14 +297,64 @@ public class PlayerMovement : MonoBehaviour
         else //Air
         {
             rb.gravityScale = 3;
-            movementVelocity = 10f;
             jumpVelocity = 14f;
             hasMovementParticle = false;
-            isSlippery = true;
+            SlipperyAir();
             isBouncy = false;
         }
     }
 
+    private void SlipperyAir()
+    {
+        switch (airMechanic)
+        {
+            case 0://momentum air
+                isSlippery = true;
+                break;
+            case 1://no momentum air
+                isSlippery = false;
+                needsPassthrough = false;
+                break;
+            case 2://keep momentum from ground
+                needsPassthrough= false;
+                break;
+
+        }
+        if (isSlippery)
+        {
+            movementVelocity = 10f;
+        }
+        else
+        {
+            movementVelocity = 7f;
+        }
+    }
+
+    public void SwitchAirMechanic()
+    {
+        airMechanic++;
+        if (airMechanic > 2) 
+        {
+            airMechanic= 0;
+        }
+        PlayerPrefs.SetInt("air", airMechanic);
+        SetButtonAirMech();
+    }
+    private void SetButtonAirMech()
+    {
+        switch (airMechanic)
+        {
+            case 0:
+                textButtonAirmechanic.text = "Keep Momentum";
+                break;
+            case 1:
+                textButtonAirmechanic.text = "No Momentum";
+                break;
+            case 2:
+                textButtonAirmechanic.text = "Terrain Momentum";
+                break;
+        }
+    }
     private void CanMove()
     {
         canMove = true;

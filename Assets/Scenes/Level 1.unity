@@ -3835,6 +3835,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3590380307718693430, guid: c448cc32439cebf48985d55ed543424a, type: 3}
+      propertyPath: textButtonAirmechanic
+      value: 
+      objectReference: {fileID: 9020493882367637194}
     - target: {fileID: 8756248799927028488, guid: c448cc32439cebf48985d55ed543424a, type: 3}
       propertyPath: nextLevel
       value: 
@@ -52249,6 +52253,18 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: Sound, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 1861244650610552825, guid: 4cfdcc316c7d6fd4eb1610aab7c82b0f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2060327788}
+    - target: {fileID: 1861244650610552825, guid: 4cfdcc316c7d6fd4eb1610aab7c82b0f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SwitchAirMechanic
+      objectReference: {fileID: 0}
+    - target: {fileID: 1861244650610552825, guid: 4cfdcc316c7d6fd4eb1610aab7c82b0f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerMovement, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 9020493881758432525, guid: 4cfdcc316c7d6fd4eb1610aab7c82b0f, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -52362,3 +52378,14 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4cfdcc316c7d6fd4eb1610aab7c82b0f, type: 3}
+--- !u!114 &9020493882367637194 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3921460607789294592, guid: 4cfdcc316c7d6fd4eb1610aab7c82b0f, type: 3}
+  m_PrefabInstance: {fileID: 9020493882367637193}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
