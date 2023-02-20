@@ -18,11 +18,14 @@ public class PlayerMovement : MonoBehaviour
     private int groundType = 0; // 0 == normal terrain // 1 == ice // ...  
     private bool isSlippery = false;
     private bool hasMovementParticle = false;
-    private float maxHorizontalVelocity = 0f;
+    private float maxHorizontalVelocity = 7f;
     private bool isBouncy = false;
     private float previousVelocityY;
     private float bounceRetention = 0f;
     private bool hasLanded = true;
+    private float passthroughVelocityX = 0f;
+    private bool needsPassthrough = false;
+    private float timeJumped = Time.time;
 
 
     [SerializeField] private LayerMask[] jumpableGrounds;
@@ -37,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        //Application.targetFrameRate= 30;
         //Debug.Log("Script intitialised");
         rb = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
@@ -49,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
     {
 
         CharachterMovent();
+        
 
     }
 
@@ -70,6 +75,9 @@ public class PlayerMovement : MonoBehaviour
             //Debug.Log("Velocity.x: "+rb.velocity.x);
             //Debug.Log("groundType: "+ groundType);
             //Debug.Log("previous velocity y: " + previousVelocityY);
+            //Debug.Log("movementVelocity: "+ movementVelocity);
+            //Debug.Log("isSlippery: " + isSlippery);
+            //Debug.Log("maxHorizontalVelocity: " + maxHorizontalVelocity);
             float movement = rb.velocity.x + (horizontalMovement * movementVelocity) * Time.deltaTime;
             if (!isSlippery)
             {
@@ -85,8 +93,18 @@ public class PlayerMovement : MonoBehaviour
                 {
                     movement = maxHorizontalVelocity;
                 }
-
-                rb.velocity = new Vector2(movement, rb.velocity.y);
+                if (!IsGrounded() && needsPassthrough)
+                {
+                    needsPassthrough = false;
+                    passthroughVelocityX = passthroughVelocityX / 1.5f;
+                    //Debug.Log(passthroughVelocityX);
+                    rb.velocity = new Vector2(passthroughVelocityX , rb.velocity.y);
+                    //Debug.Log("VelocityX: " + rb.velocity.x);
+                }
+                else
+                {
+                    rb.velocity = new Vector2(movement, rb.velocity.y);
+                }
             }
             if (movement > 0.5f || movement < -0.5f)
             {
@@ -205,7 +223,16 @@ public class PlayerMovement : MonoBehaviour
     {
         if (IsGrounded() && isBouncy && previousVelocityY < -3f)
         {
-            rb.velocity = new Vector2(rb.velocity.x ,previousVelocityY * -bounceRetention) ;
+            Debug.Log("BounceJump: " + (Time.time - timeJumped));
+            if ((Time.time - timeJumped) < 0.4f)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, (previousVelocityY * -bounceRetention)+jumpVelocity);
+                timeJumped = 0;
+            }
+            else
+            {
+                rb.velocity = new Vector2(rb.velocity.x, previousVelocityY * -bounceRetention);
+            }
         }
         previousVelocityY = rb.velocity.y;
     }
@@ -219,16 +246,20 @@ public class PlayerMovement : MonoBehaviour
             switch (groundType)
             {
                 case 0: //Normal
+                    needsPassthrough = true;
+                    passthroughVelocityX = rb.velocity.x;
                     movementVelocity = 7f;
                     jumpVelocity = 14f;
                     isSlippery = false;
                     hasMovementParticle = false;
                     rb.gravityScale = 3;
                     isBouncy = false;
+                    maxHorizontalVelocity = 7f;
                     break;
                 case 1: //Ice
+                    needsPassthrough = false;
                     rb.gravityScale = 1;
-                    movementVelocity = 20f;
+                    movementVelocity = 17f;
                     jumpVelocity = 14f;
                     isSlippery = true;
                     hasMovementParticle = true;
@@ -236,7 +267,8 @@ public class PlayerMovement : MonoBehaviour
                     isBouncy = false;
                     break;
                 case 2: //Sand
-                    rb.gravityScale = 4;
+                    needsPassthrough = false;
+                    rb.gravityScale = 3;
                     movementVelocity = 18f;
                     jumpVelocity = 10f;
                     isSlippery = true;
@@ -245,6 +277,8 @@ public class PlayerMovement : MonoBehaviour
                     isBouncy = false;
                     break;
                 case 3://Slime
+                    needsPassthrough = true;
+                    passthroughVelocityX = rb.velocity.x;
                     rb.gravityScale = 3;
                     movementVelocity = 7f;
                     isSlippery = false;
@@ -258,10 +292,10 @@ public class PlayerMovement : MonoBehaviour
         else //Air
         {
             rb.gravityScale = 3;
-            movementVelocity = 7f;
+            movementVelocity = 10f;
             jumpVelocity = 14f;
             hasMovementParticle = false;
-            isSlippery = false;
+            isSlippery = true;
             isBouncy = false;
         }
     }
@@ -293,6 +327,10 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("isDoubleJumping", true);
             jumpSound.Play();
             dustParticle.Play();
+        }
+        else
+        {
+            timeJumped = Time.time;
         }
     }
 
