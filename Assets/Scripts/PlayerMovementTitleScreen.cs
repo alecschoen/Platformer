@@ -146,9 +146,14 @@ public class PlayerMovementTitleScreen : MonoBehaviour
         rb.bodyType = RigidbodyType2D.Dynamic;
         rb.velocity = Vector2.zero;
         rb.position = new Vector2(-5, -1);
+        CancelInvoke();
         Invoke("IsAppearing", 1f);
-        hasRespawned = true;
         isRunning = false;
+    }
+
+    public void SetHasRespawned()
+    {
+        hasRespawned = true;
     }
 
     public void GetStopped()
