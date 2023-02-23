@@ -13,15 +13,13 @@ public class Parallax : MonoBehaviour
 
     private float ParallaxAmount => 1f - lagAmount;
 
-    // Start is called before the first frame update
     private void Awake()
     {
         camera = Camera.main.transform;
         previousCameraPosition = camera.position;
     }
 
-    // Update is called once per frame
-    private void LateUpdate()
+    private void FixedUpdate()
     {
         Vector3 movement = CameraMovement;
         if (movement == Vector3.zero) return;
