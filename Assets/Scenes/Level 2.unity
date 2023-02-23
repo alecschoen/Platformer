@@ -2350,7 +2350,7 @@ PrefabInstance:
       objectReference: {fileID: 3590380308688779386}
     - target: {fileID: 1814112656852374362, guid: 4cfdcc316c7d6fd4eb1610aab7c82b0f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SwitchMute
+      value: SwitchMuteMusic
       objectReference: {fileID: 0}
     - target: {fileID: 1814112656852374362, guid: 4cfdcc316c7d6fd4eb1610aab7c82b0f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -2367,6 +2367,14 @@ PrefabInstance:
     - target: {fileID: 1861244650610552825, guid: 4cfdcc316c7d6fd4eb1610aab7c82b0f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: PlayerMovement, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2720426742328847467, guid: 4cfdcc316c7d6fd4eb1610aab7c82b0f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3590380308688779386}
+    - target: {fileID: 2720426742328847467, guid: 4cfdcc316c7d6fd4eb1610aab7c82b0f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SwitchMuteFx
       objectReference: {fileID: 0}
     - target: {fileID: 9020493881758432525, guid: 4cfdcc316c7d6fd4eb1610aab7c82b0f, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target

@@ -7,7 +7,7 @@ public class Parallax : MonoBehaviour
 
     [SerializeField][Range(0f,1f)] private float lagAmount = 0f;
 
-    private float previousCameraPosition;
+    private Vector3 previousCameraPosition;
     private Transform camera;
     private Vector3 targetPosition;
 

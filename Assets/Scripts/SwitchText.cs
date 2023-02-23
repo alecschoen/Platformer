@@ -6,20 +6,22 @@ using UnityEngine.UI;
 public class SwitchText : MonoBehaviour
 {
     [SerializeField] private Text text;
-    private bool isMuted = false;
+    [SerializeField] private string afterText;
 
     // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        if(PlayerPrefs.GetInt("isMuted", 0) == 0 && isMuted)
+        SetText();
+    }
+    public void SetText()
+    {
+        if (PlayerPrefs.GetInt("is" + afterText + "Muted", 0) == 0)
         {
-            text.text = "Mute";
-            isMuted = false;
+            text.text = "Mute " + afterText;
         }
-        else if(PlayerPrefs.GetInt("isMuted", 0) == 1 && !isMuted)
+        else if (PlayerPrefs.GetInt("is" + afterText + "Muted", 0) == 1)
         {
-            text.text = "Unmute";
-            isMuted = true;
+            text.text = "Unmute " + afterText;
         }
     }
 }

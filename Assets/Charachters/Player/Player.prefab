@@ -5485,11 +5485,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3391911e64a891b45ab15f8763c11156, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSources:
+  fxSound:
   - {fileID: 3954277587146988343}
   - {fileID: 8663296713453072798}
   - {fileID: 4151728287003277595}
-  - {fileID: 7374203416191911149}
+  music: {fileID: 7374203416191911149}
 --- !u!114 &8769599855135328556
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -227,7 +227,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Bounce()
     {
-        if (IsGrounded() && isBouncy && previousVelocityY < -3f)
+        if (IsGrounded() && isBouncy && previousVelocityY < -5f)
         {
             Debug.Log("BounceJump: " + (Time.time - timeJumped));
             if ((Time.time - timeJumped) < 0.4f)

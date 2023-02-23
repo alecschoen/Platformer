@@ -4,58 +4,87 @@ using UnityEngine;
 
 public class Sound : MonoBehaviour
 {
-    private bool isMuted = false;
 
-    [SerializeField] private AudioSource[] audioSources;
+    [SerializeField] private AudioSource[] fxSound;
+    [SerializeField] private AudioSource music;
 
     // Update is called once per frame
-    private void Update()
+    private void Start()
     {
-       MuteSound();
+        MuteSoundFx();
+        MuteMusic();
     }
     
     
-    private int IsMuted()
+    private int IsFxMuted()
     {
 
-        return PlayerPrefs.GetInt("isMuted", 0);
+        return PlayerPrefs.GetInt("isFxMuted", 0);
 
     }
 
-    public void SwitchMute()
+    public void SwitchMuteFx()
     {
-        if (PlayerPrefs.GetInt("isMuted", 0) == 0)
+        if (PlayerPrefs.GetInt("isFxMuted", 0) == 0)
         {
-            PlayerPrefs.SetInt("isMuted", 1);
+            PlayerPrefs.SetInt("isFxMuted", 1);
         }
         else
         {
-            PlayerPrefs.SetInt("isMuted", 0);
+            PlayerPrefs.SetInt("isFxMuted", 0);
         }
+        MuteSoundFx();
     }
 
-    private void MuteSound()
+    private void MuteSoundFx()
     {
 
-        if (IsMuted() == 1 && !isMuted)
+        if (IsFxMuted() == 1)
         {
-            for(int i = 0; i < audioSources.Length; i++)
+            for(int i = 0; i < fxSound.Length; i++)
             {
-                audioSources[i].enabled = false;
+                fxSound[i].enabled = false;
             }
-            isMuted = true;
         }
-        else if(IsMuted() == 0 && isMuted)
+        else if(IsFxMuted() == 0)
         {
-            for (int i = 0; i < audioSources.Length; i++)
+            for (int i = 0; i < fxSound.Length; i++)
             {
-                audioSources[i].enabled = true;
+                fxSound[i].enabled = true;
             }
-
-            isMuted = false;
         }
 
     }
 
-    
+    private int IsMusicMuted()
+    {
+
+        return PlayerPrefs.GetInt("isMusicMuted", 0);
+    }
+
+        private void MuteMusic()
+    {
+        if (IsMusicMuted() == 1)
+        {
+            music.enabled = false;
+        }
+        else if (IsMusicMuted() == 0)
+        {
+            music.enabled = true;
+        }
+    }
+
+    public void SwitchMuteMusic()
+    {
+        if (PlayerPrefs.GetInt("isMusicMuted", 0) == 0)
+        {
+            PlayerPrefs.SetInt("isMusicMuted", 1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("isMusicMuted", 0);
+        }
+        MuteMusic();
+    }
+
 }
